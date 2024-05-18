@@ -1,5 +1,7 @@
 import { NuxtConfig } from '@nuxt/types';
 
+
+
 const config: NuxtConfig = {
   target: 'static',
 
@@ -43,9 +45,15 @@ const config: NuxtConfig = {
     }],
   ],
 
-  modules: [
-    // No need for 'bootstrap-vue/nuxt' if using Bootstrap 5 directly
-  ],
+  modules: ['@nuxtjs/axios'],
+  axios: {
+    baseURL: 'https://api.nookipedia.com/', // Nookipedia's API base URL
+    headers: {
+      common: {
+        'Authorization': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff' // Replace with your access token
+      }
+    }
+  },
 
   build: {
     // Add build configuration options here
