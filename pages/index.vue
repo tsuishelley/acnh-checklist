@@ -24,6 +24,7 @@ export default defineComponent({
   },
   async mounted() {
     try {
+        const baseURL = 'https://api.nookipedia.com';
       const response = await axios.get('/villagers');
       this.fishList = response.data;
     } catch (error) {

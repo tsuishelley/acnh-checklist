@@ -47,7 +47,7 @@ const config: NuxtConfig = {
 
   modules: ['@nuxtjs/axios'],
   axios: {
-    baseURL: 'https://api.nookipedia.com/', // Nookipedia's API base URL
+    baseURL: 'https://api.nookipedia.com', // Nookipedia's API base URL
     headers: {
       common: {
         'Authorization': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff' // Replace with your access token
