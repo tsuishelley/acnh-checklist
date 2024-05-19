@@ -41,9 +41,22 @@ export default {
     const fishes = ref([]);
 
     const fetchData = async () => {
-      const response = await fetch('https://api.nookipedia.com/nh/fish');
-      const data = await response.json();
-      fishes.value = data;
+      try {
+        const response = await fetch('https://api.nookipedia.com/nh/fish', {
+          headers: {
+            // Add your access key here
+            'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
+          }
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);  // Log the data to inspect its structure
+        fishes.value = data;
+      } catch (error) {
+        console.error('Error fetching fish data:', error);
+      }
     };
 
     onMounted(fetchData);
