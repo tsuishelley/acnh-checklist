@@ -103,13 +103,13 @@
   padding: 20px 30px;
   border-radius: 40px;
   text-decoration: none;
-  background-color: #8a7b66;
+  background-color: #725c4e;
   margin-left: 20px;
   color: white;
 }
 
 .pill:hover {
-  background-color: #725c4e;
+  background-color: #8a7b66;
   color: white;
 }
 

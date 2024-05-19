@@ -46,7 +46,15 @@ h3 {
 .col-7{
   flex: 2;
   margin-right:80px;
-  margin-bottom:100px;
+}
+
+.col{
+    display: flex;
+  align-items: center;
+}
+
+hr {
+      margin:100px 0;
 }
 
 img.me {
