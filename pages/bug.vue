@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>ACNH Bug Checklist</h1>
+      <h1>Animal Crossing Bugs Checklist</h1>
       <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div class="heading-row">
@@ -16,7 +16,7 @@
     <img class="col" :src="bug.image_url" alt="Bug Image">
       <h2 class="col">{{ bug.name }}</h2>
       <h2 class="col">{{bug.location}}</h2>
-      <h2 class="col">{{bug.sell_nook}}</h2>
+      <h2 class="col">{{bug.sell_nook}} Bells</h2>
       <h2 class="col">{{ hemisphere === 'northern' ? bug.north.months : bug.south.months }}</h2>
       <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
     </div>

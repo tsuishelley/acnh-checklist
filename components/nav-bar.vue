@@ -30,10 +30,10 @@
     </div>
     <div class="sidebar">
       <NuxtLink to="/" class="checklist-pill">
-        Fish
+        Fishes
       </NuxtLink>
             <NuxtLink to="/bug" class="about-pill">
-        Bug
+        Bugs
       </NuxtLink>
             <NuxtLink to="/about" class="about-pill">
         About
@@ -89,7 +89,7 @@
   border-radius: 40px;
   text-decoration: none;
   background-color: #8a7b66;
-  margin-right: 20px;
+  margin-left: 20px;
   color: white;
 }
 

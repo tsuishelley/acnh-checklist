@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>ACNH Fish Checklist</h1>
+      <h1>Animal Crossing Fishes Checklist</h1>
       <p>All the fish available to catch in Animal Crossing New Horizons along with their location, shadow, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div class="heading-row">
@@ -17,7 +17,7 @@
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{fish.location}}</h2>
       <h2 class="col">{{fish.shadow_size}}</h2>
-      <h2 class="col">{{fish.sell_nook}}</h2>
+      <h2 class="col">{{fish.sell_nook}} Bells</h2>
             <h2 class="col">{{ hemisphere === 'northern' ? fish.north.months : fish.south.months }}</h2>
 
       <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
