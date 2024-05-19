@@ -12,12 +12,14 @@
 // Import the NavBar and HomePage components
 import NavBar from './components/nav-bar.vue';
 import HomePage from './pages/index.vue';
+import BugPage from './pages/bug.vue';
 export default {
   name: 'DefaultLayout',
   components: {
     // Register the NavBar and HomePage components
     NavBar,
-    HomePage
+    HomePage,
+    BugPage
   }
 }
 </script>

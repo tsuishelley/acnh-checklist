@@ -1,25 +1,23 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>ACNH Fish Checklist</h1>
-      <p>All the fish available to catch in Animal Crossing New Horizons along with their location, shadow, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
+      <h1>ACNH Bug Checklist</h1>
+      <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div class="heading-row">
        <h2 class= "col">Name</h2>
         <h2 class= "col">Location</h2>
-        <h2 class= "col">Shadow</h2>
         <h2 class= "col">Sell Value</h2>
-        <h2 class= "col">Availability</h2>
+      <h2 class= "col">Availability</h2>
+
         <h2 class= "col">Caught</h2>
     </div>
-    <div class="row" v-for="fish in fishes" :key="fish.id">
-    <img class="col" :src="fish.image_url" alt="Fish Image">
-      <h2 class="col">{{ fish.name }}</h2>
-      <h2 class="col">{{fish.location}}</h2>
-      <h2 class="col">{{fish.shadow_size}}</h2>
-      <h2 class="col">{{fish.sell_nook}}</h2>
-            <h2 class="col">{{ hemisphere === 'northern' ? fish.north.months : fish.south.months }}</h2>
-
+    <div class="row" v-for="bug in bugs" :key="bug.id">
+    <img class="col" :src="bug.image_url" alt="Bug Image">
+      <h2 class="col">{{ bug.name }}</h2>
+      <h2 class="col">{{bug.location}}</h2>
+      <h2 class="col">{{bug.sell_nook}}</h2>
+      <h2 class="col">{{ hemisphere === 'northern' ? bug.north.months : bug.south.months }}</h2>
       <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
     </div>
   </div>
@@ -104,14 +102,14 @@ main {
 import { ref, onMounted } from 'vue';
 
 export default {
-  name: 'HomePage',
+  name: 'BugPage',
   setup() {
-    const fishes = ref([]);
+    const bugs = ref([]);
     const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
 
     async function fetchData() {
       try {
-        const response = await fetch('https://api.nookipedia.com/nh/fish', {
+        const response = await fetch('https://api.nookipedia.com/nh/bugs', {
           headers: {
             'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
           }
@@ -121,13 +119,13 @@ export default {
         }
         const data = await response.json();
         console.log(data);  // Log the data to inspect its structure
-        fishes.value = data.map(fish => ({
-          ...fish,
-          northAvailability: fish.north.availability_array,
-          southAvailability: fish.south.availability_array
+        bugs.value = data.map(bug => ({
+          ...bug,
+          northAvailability: bug.north.availability_array,
+          southAvailability: bug.south.availability_array
         }));
       } catch (error) {
-        console.error('Error fetching fish data:', error);
+        console.error('Error fetching bug data:', error);
       }
     }
 
@@ -144,7 +142,7 @@ export default {
     onMounted(fetchData);
 
     return {
-      fishes,
+      bugs,
       hemisphere
     };
   }

@@ -30,9 +30,12 @@
     </div>
     <div class="sidebar">
       <NuxtLink to="/" class="checklist-pill">
-        Checklist
+        Fish
       </NuxtLink>
-      <NuxtLink to="/about" class="about-pill">
+            <NuxtLink to="/bug" class="about-pill">
+        Bug
+      </NuxtLink>
+            <NuxtLink to="/about" class="about-pill">
         About
       </NuxtLink>
     </div>
@@ -91,8 +94,9 @@
 }
 
 
-.about-pill:hover {
-      animation: wiggle 1.5s linear infinite;
+.about-pill:hover, .checklist-pill:hover{
+ background-color: #725C4E;
+   color: white;
 }
 
 .header {
