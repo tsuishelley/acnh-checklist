@@ -64,12 +64,13 @@
 }
 
 .season {
-      background-color: #F7CD67;
+        background-color: #82D5BB;
+
 }
 
 .hemisphere {
-      background-color: #82D5BB;
-}
+      background-color: #F7CD67;
+      }
 
 .current-time, .current-season, .current-hemisphere {
   padding: 20px 30px;
@@ -80,7 +81,7 @@
   font-size: 18px;
 }
 
-.checklist-pill {
+.checklist-pill, .about-pill{
   padding: 20px 30px;
   border-radius: 40px;
   text-decoration: none;
@@ -89,13 +90,6 @@
   color: white;
 }
 
-.about-pill {
-  padding: 20px 30px;
-  border-radius: 40px;
-  text-decoration: none;
-  background-color: white;
-  color: #8a7b66;
-}
 
 .about-pill:hover {
       animation: wiggle 1.5s linear infinite;
@@ -151,7 +145,14 @@ export default {
   methods: {
     updateTimeAndSeason() {
       const now = new Date();
-      this.currentTime = now.toLocaleTimeString();
+      let hour = now.getHours();
+  const minute = now.getMinutes();
+  const period = hour >= 12 ? 'PM' : 'AM';
+  
+  // Convert to 12-hour format
+  hour = hour % 12 || 12;
+
+  this.currentTime = `${hour}:${minute < 10 ? '0' + minute : minute} ${period}`;
       this.currentSeason = this.getSeason(now.getMonth());
       this.currentHemisphere = this.getHemisphere(now.getMonth());
     },

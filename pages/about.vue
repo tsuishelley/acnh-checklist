@@ -4,6 +4,8 @@
       <div class="col-7">
         <h1>About</h1>
         <p>This site was created as a final project for the UW Certificate in Front-End Development by myself, Shelley Tsui. Thank you so much to my instructor Aaron for all the kind help, September Works for providing me with the opportunity to learn front-end development, and most importantly my husband Christian for supplying me with endless mugs of tea and snacks throughout all three courses.</p>
+      <br>
+      <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties. If you're interested in seeing more of my work, click here. </p>
       </div>
       <div class="col" style="position: relative;">
         <img src="/assets/acnh-shelley.svg" class="me" alt="" style="position: absolute; right: 10%;">

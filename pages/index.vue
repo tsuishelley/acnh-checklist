@@ -8,7 +8,7 @@
        <h2 class= "col">Name</h2>
         <h2 class= "col">Location</h2>
         <h2 class= "col">Shadow</h2>
-        <h2 class= "col">Rarity</h2>
+        <h2 class= "col">Sell Value</h2>
         <h2 class= "col">Caught</h2>
     </div>
     <div class="row" v-for="fish in fishes" :key="fish.id">
@@ -16,7 +16,7 @@
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{fish.location}}</h2>
       <h2 class="col">{{fish.shadow_size}}</h2>
-      <h2 class="col">{{fish.rarity}}</h2>
+      <h2 class="col">{{fish.sell_nook}}</h2>
       <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
     </div>
   </div>
