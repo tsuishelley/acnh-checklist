@@ -27,6 +27,7 @@ h2.col {
 .app {
   background-color: white;
   padding: 5% 5% 5% 5%;
+  border-radius:40px !important;
 }
 
 

@@ -71,7 +71,6 @@ html {
   background-attachment: fixed;
 }
 
-
 main {
   margin-bottom: 50px;
 }
