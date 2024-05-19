@@ -4,14 +4,6 @@
       <h1>Animal Crossing Bugs Checklist</h1>
       <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
-    <div class="heading-row">
-       <h2 class= "col">Name</h2>
-        <h2 class= "col">Location</h2>
-        <h2 class= "col">Sell Value</h2>
-      <h2 class= "col">Availability</h2>
-
-        <h2 class= "col">Caught</h2>
-    </div>
     <div class="row" v-for="bug in bugs" :key="bug.id">
     <img class="col" :src="bug.image_url" alt="Bug Image">
       <h2 class="col">{{ bug.name }}</h2>
@@ -37,21 +29,6 @@ h2.col {
   padding: 5% 5% 5% 5%;
 }
 
-.heading-row {
-  display: flex;
-  background-color: #8A7B66;
-  border-radius: 10px;
-  align-items: center;
-  padding: 10px 20px 10px 20px;
-  margin-bottom:5px;
-  width:100%;
-}
-
-.heading-row h2 {
-  color:white;
-  margin: 0px;
-  font-weight: 400;
-}
 
 p {
   color: #725C4E;
