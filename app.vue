@@ -1,4 +1,5 @@
 <template>
+
   <div>
   <NavBar />
     <div class="white-content-box">  <!-- Add the white background and border radius to this div instead of the body -->
@@ -37,5 +38,15 @@ p {
   font-family: "Roboto", sans-serif;
   line-height: 150%;
   font-size:18px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
 }
 </style>

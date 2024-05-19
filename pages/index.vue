@@ -2,7 +2,7 @@
   <div class="app">
     <main class="main">
       <h1>Animal Crossing Fish Checklist</h1>
-      <p>This checklist shows all the fish available to catch in Animal Crossing New Horizons along with their location, shadow, and rarity. Feel free to use this resource as you see fit!</p>
+      <p>This checklist shows all the fish available to catch in Animal Crossing New Horizons along with their location, shadow, and rarity. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div class="heading-row">
        <h2 class= "col">Name</h2>

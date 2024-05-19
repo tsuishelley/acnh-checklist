@@ -1,4 +1,5 @@
 <template>
+
   <div class="header">
     <div class="user">
     <div class="demographic">
@@ -76,6 +77,7 @@
   text-decoration: none;
   background-color: white;
   color: #8a7b66;
+  font-size: 18px;
 }
 
 .checklist-pill {
@@ -134,6 +136,7 @@
 
 <script>
 export default {
+  
   name: 'NavBar',
   data() {
     return {
