@@ -1,22 +1,55 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>Animal Crossing Fish List</h1>
-      <p>This checklist allows you to see what fish you’re currently able to catch in Animal Crossing depending on your time, season, and location. Feel free to use this resource as you see fit!</p>
+      <h1>Animal Crossing Fish Checklist</h1>
+      <p>This checklist shows all the fish available to catch in Animal Crossing New Horizons along with their location, shadow, and rarity. Feel free to use this resource as you see fit!</p>
     </main>
+    <div class="heading-row">
+       <h2 class= "col">Name</h2>
+        <h2 class= "col">Location</h2>
+        <h2 class= "col">Shadow</h2>
+        <h2 class= "col">Rarity</h2>
+        <h2 class= "col">Caught</h2>
+    </div>
     <div class="row" v-for="fish in fishes" :key="fish.id">
-    <img class="col" :src="fish.image_url" alt="Fish Image" style="max-height: 50px;">
+    <img class="col" :src="fish.image_url" alt="Fish Image">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{fish.location}}</h2>
       <h2 class="col">{{fish.shadow_size}}</h2>
+      <h2 class="col">{{fish.rarity}}</h2>
+      <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
     </div>
   </div>
 </template>
 
 <style>
+img.col {
+  max-width: 75px; /* Adjust the width as needed */
+}
+
+h2.col {
+  margin:0px;
+}
+
 .app {
   background-color: white;
   padding: 5% 5% 5% 5%;
+}
+
+.heading-row {
+  display: flex;
+  background-color: #8A7B66;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  margin-bottom:5px;
+  width:100%;
+}
+
+.heading-row h2 {
+  color:white;
+  margin: 0px;
+  font-weight: 400;
 }
 
 p {
@@ -39,17 +72,29 @@ h2 {
 }
 
 .row {
-  display:flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjust as needed */
   background-color: #F8F4E8;
-  margin-bottom: 5px;
-  border-radius: 20px;
-  padding: 5px;
+  border-radius: 10px;
+  width: 100%;
+  padding-right: 20px;
+  margin: 0 2px 5px 0; /* Add padding to match the heading row */
 }
 
 html {
-  background-color: #EEE9CA;
+  background-image: url('/assets/background-image.jpg');
+  background-size: 100%;
+  height:100%;
   margin: 5% 15% 10% 15%;
+  background-attachment: fixed;
 }
+
+
+main {
+  margin-bottom: 50px;
+}
+
 </style>
 
 <script>

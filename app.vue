@@ -28,18 +28,14 @@ url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&d
 
 
 
-.white-content-box {
-    background-color:white;
-}
-
 h1 {
     font-family: "Poppins", sans-serif;
     font-size: 48px;
-    line-height: 100%;
 }
 
 p {
   font-family: "Roboto", sans-serif;
   line-height: 150%;
+  font-size:18px;
 }
 </style>
