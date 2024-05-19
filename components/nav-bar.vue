@@ -22,7 +22,6 @@ to="/about">
 
 <style>
 body {
-  border-radius: 30px;
   background-color:white;
 }
 .header {

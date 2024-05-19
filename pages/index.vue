@@ -5,7 +5,7 @@
       <p>This checklist allows you to see what fish you’re currently able to catch in Animal Crossing depending on your time, season, and location. Feel free to use this resource as you see fit!</p>
     </main>
     <div class="row" v-for="fish in fishes" :key="fish.id">
-    <img class="col" :src="fish.image_url" alt="Fish Image" style="max-width: 100px; max-height: 100px;">
+    <img class="col" :src="fish.image_url" alt="Fish Image" style="max-height: 50px;">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{fish.location}}</h2>
       <h2 class="col">{{fish.shadow_size}}</h2>
@@ -15,8 +15,8 @@
 
 <style>
 .app {
-  margin: 5% 15% 10% 15%;
   background-color: white;
+  padding: 5% 5% 5% 5%;
 }
 
 p {
@@ -48,6 +48,7 @@ h2 {
 
 html {
   background-color: #EEE9CA;
+  margin: 5% 15% 10% 15%;
 }
 </style>
 
