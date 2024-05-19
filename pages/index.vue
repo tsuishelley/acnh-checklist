@@ -64,7 +64,7 @@ h2 {
 }
 
 html {
-  background-image: url('/assets/background-image.jpg');
+  background-image: url('/assets/background-image.svg');
   background-size: 100%;
   height:100%;
   margin: 5% 15% 10% 15%;
