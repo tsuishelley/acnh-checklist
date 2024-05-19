@@ -1,6 +1,6 @@
 <template>
 
-  <div class="header">
+  <div class="container">
     <div class="user">
     <div class="demographic">
       <div class="chip time">
@@ -29,62 +29,77 @@
 
     </div>
     <div class="sidebar">
-      <NuxtLink to="/" class="checklist-pill">
+      <NuxtLink to="/" class="pill">
         Fishes
       </NuxtLink>
-            <NuxtLink to="/bug" class="about-pill">
+            <NuxtLink to="/bug" class="pill">
         Bugs
       </NuxtLink>
-            <NuxtLink to="/about" class="about-pill">
+            <NuxtLink to="/about" class="pill">
         About
       </NuxtLink>
     </div>
   </div>
 </template>
 
+
 <style>
-.demographic {
-  display:flex;
-  flex-direction:column;
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom:50px;
+  justify-content:space-between;
 }
 
 .user {
-  display:flex;
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+}
+
+.demographic {
+  display: flex;
+  flex-direction: column;
 }
 
 .chip {
-    display: inline-block;
-    padding: 5px 15px;
-    color: #725C4E;
-    border-radius: 20px;
-    font-family: Roboto;
-    transform: rotate(-10deg);
-    font-size:14px;
+  display: inline-block;
+  padding: 5px 15px;
+  color: #725c4e;
+  border-radius: 20px;
+  font-family: Roboto;
+  transform: rotate(-10deg);
+  font-size: 14px;
 }
 
 .time {
-      background-color: #ECDF52;
+  background-color: #ecdf52;
 }
 
 .season {
-        background-color: #82D5BB;
-
+  background-color: #82d5bb;
 }
 
 .hemisphere {
-      background-color: #F7CD67;
-      }
+  background-color: #f7cd67;
+}
 
-.current-time, .current-season, .current-hemisphere {
+.current-time,
+.current-season,
+.current-hemisphere {
   padding: 20px 30px;
   border-radius: 40px;
   text-decoration: none;
   background-color: white;
   color: #8a7b66;
   font-size: 18px;
+  margin-right:20px;
 }
 
-.checklist-pill, .about-pill{
+.pill {
   padding: 20px 30px;
   border-radius: 40px;
   text-decoration: none;
@@ -93,19 +108,14 @@
   color: white;
 }
 
-
-.about-pill:hover, .checklist-pill:hover{
- background-color: #725C4E;
-   color: white;
+.pill:hover {
+  background-color: #725c4e;
+  color: white;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   font-family: Roboto;
 }
-
 
 @keyframes wiggle {
   0%, 7% {
@@ -131,6 +141,7 @@
   }
 }
 </style>
+
 
 <script>
 export default {
