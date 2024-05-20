@@ -115,12 +115,13 @@
 .pill:hover {
   background-color: #8a7b66;
   color: white;
+      animation: wiggle 1s infinite; /* Apply the animation */
+
 }
 
 .header {
   font-family: Roboto;
 }
-
 @keyframes wiggle {
   0%, 7% {
     transform: rotateZ(0);
@@ -144,6 +145,7 @@
     transform: rotateZ(0);
   }
 }
+
 </style>
 
 

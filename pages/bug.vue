@@ -11,9 +11,14 @@
       :class="{ 'checked-row': bug.checked }"
     >
       <img class="col" :src="bug.image_url" alt="Bug Image">
-      <h2 class="col">{{ bug.name }}</h2>
+<h2 class="col">{{bug.name }}</h2>
       <h2 class="col">{{ bug.location }}</h2>
-      <h2 class="col">{{ bug.sell_nook }} Bells</h2>
+<h2 class="col">
+
+  <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
+  &nbsp;
+    {{ bug.sell_nook }}
+</h2>
       <h2 class="col">{{ hemisphere === 'northern' ? bug.north.months : bug.south.months }}</h2>
       <div class="col checkbox-container">
         <input
@@ -138,6 +143,7 @@ async function fetchData() {
     console.log(data);  // Log the data to inspect its structure
     bugs.value = data.map(bug => ({
       ...bug,
+      name: capitalizeFirstLetter(bug.name), // Capitalize the first letter of bug name
       northAvailability: bug.north.availability_array,
       southAvailability: bug.south.availability_array,
       checked: false  // Ensure each bug has its own 'checked' property
@@ -153,7 +159,7 @@ async function fetchData() {
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
-    function capitalizeFirstLetter(str) {
+     function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 

@@ -3,9 +3,9 @@
     <div class="about-row">
       <div class="col-7">
         <h1>About</h1>
-        <p>This site was created as a final project for the UW Certificate in Front-End Development by myself, Shelley Tsui. Thank you so much to my instructor Aaron for all the kind help, September Works for providing me with the opportunity to learn front-end development, and most importantly my husband Christian for supplying me with endless mugs of tea and snacks throughout all three courses.</p>
+        <p>This site was created as a final project for the <a href="https://www.pce.uw.edu/certificates/front-end-development-with-html-css-and-javascript">UW Certificate in Front-End Development</a> by Shelley Tsui. Thank you so much to my instructor Aaron for all the kind help and most importantly my husband Christian for supplying me with endless mugs of tea and snacks throughout all three courses.</p>
       <br>
-      <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties. My passport title is Untossable Trash. If you're interested in seeing more of my work, click here. </p>
+      <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties. My passport title is Untossable Trash. If you're interested in seeing more of my work, click <a href="https://tsuishelley.github.io/portfolio">here</a>. </p>
       </div>
       <div class="col" style="position: relative;">
         <img src="/assets/acnh-shelley.svg" class="me" alt="" style="position: relative; right: 10%;">
@@ -18,6 +18,7 @@
     <p>Animal Crossing Character Maker by <a href="https://www.figma.com/@ace">Ace S Chen</a></p>
     <p>Animal Crossing UI Kit by <a href="https://manaloka.com">Kat Manalo</a></p>
     <p>Animal Crossing Data from <a href="https://api.nookipedia.com/">Nookipedia API</a></p>
+    <p>Click <a href="https://github.com/tsuishelley/acnh-checklist">here</a> to view the GitHub repository for this project.</p>
   </div>
 </template>
 
@@ -54,7 +55,7 @@ h3 {
 }
 
 hr {
-      margin:100px 0;
+      margin:50px 0;
 }
 
 img.me {

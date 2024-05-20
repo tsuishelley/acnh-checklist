@@ -13,7 +13,11 @@
       <img class="col" :src="fish.image_url" alt="Fish Image">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{ fish.location }}</h2>
-      <h2 class="col">{{ fish.sell_nook }} Bells</h2>
+<h2 class="col">
+  <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
+  &nbsp;
+    {{ fish.sell_nook }}
+</h2>
       <h2 class="col">{{ hemisphere === 'northern' ? fish.north.months : fish.south.months }}</h2>
       <div class="col checkbox-container">
         <input
@@ -139,7 +143,8 @@ export default {
         fishes.value = data.map(fish => ({
           ...fish,
           northAvailability: fish.north.availability_array,
-          southAvailability: fish.south.availability_array
+          southAvailability: fish.south.availability_array,
+          checked: false // Initialize checked property for each fish
         }));
       } catch (error) {
         console.error('Error fetching fish data:', error);
@@ -152,15 +157,16 @@ export default {
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
-    function capitalizeFirstLetter(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
+    async function toggleCheckbox(fish) {
+      fish.checked = !fish.checked; // Toggle the checked property
     }
 
     onMounted(fetchData);
 
     return {
       fishes,
-      hemisphere
+      hemisphere,
+      toggleCheckbox
     };
   }
 };
