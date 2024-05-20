@@ -7,7 +7,7 @@
     <div
       class="row"
       v-for="bug in bugs"
-      :key="bug.id"
+  :key="bug.id + '-' + index"
       :class="{ 'checked-row': bug.checked }"
     >
       <img class="col" :src="bug.image_url" alt="Bug Image">
@@ -112,10 +112,12 @@ main {
   height: 30px;
   cursor: pointer;
   background: url('/assets/unchecked.svg') no-repeat center center / contain;
+  
 }
 
 .form-check-input:checked + .custom-checkbox {
   background: url('/assets/checked.svg') no-repeat center center / contain;
+  
 }
 
 </style>
@@ -129,29 +131,39 @@ export default {
     const bugs = ref([]);
     const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.nookipedia.com/nh/bugs', {
-      headers: {
-        'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
+    async function fetchData() {
+      try {
+        const response = await fetch('https://api.nookipedia.com/nh/bugs', {
+          headers: {
+            'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
+          }
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);  // Log the data to inspect its structure
+        
+        const ids = new Set(); // Create a set to store unique ids
+        
+        bugs.value = data.map((bug, index) => {
+          const id = ids.has(bug.id) ? bug.id + '-' + index : bug.id;
+          ids.add(id); // Add id to set
+          return {
+            ...bug,
+            id, // Use the modified id
+            name: capitalizeFirstLetter(bug.name), // Capitalize the first letter of bug name
+
+            northAvailability: bug.north.availability_array,
+            southAvailability: bug.south.availability_array,
+            checked: false // Initialize checked property for each bug
+          };
+        });
+      } catch (error) {
+        console.error('Error fetching bug data:', error);
       }
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
-    console.log(data);  // Log the data to inspect its structure
-    bugs.value = data.map(bug => ({
-      ...bug,
-      name: capitalizeFirstLetter(bug.name), // Capitalize the first letter of bug name
-      northAvailability: bug.north.availability_array,
-      southAvailability: bug.south.availability_array,
-      checked: false  // Ensure each bug has its own 'checked' property
-    }));
-  } catch (error) {
-    console.error('Error fetching bug data:', error);
-  }
-}
+
 
     function getHemisphere() {
       const now = new Date();
@@ -159,7 +171,11 @@ async function fetchData() {
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
-     function capitalizeFirstLetter(str) {
+    async function toggleCheckbox(bug) {
+      bug.checked = !bug.checked; // Toggle the checked property
+    }
+
+        function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
@@ -167,7 +183,8 @@ async function fetchData() {
 
     return {
       bugs,
-      hemisphere
+      hemisphere,
+      toggleCheckbox
     };
   }
 };

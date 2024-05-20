@@ -146,6 +146,8 @@
   }
 }
 
+
+
 </style>
 
 
@@ -192,7 +194,7 @@ export default {
         case 7:
           return 'Summer';
         default: // September, October, November
-          return 'Autumn';
+          return 'Fall';
       }
     },
     getHemisphere(month) {

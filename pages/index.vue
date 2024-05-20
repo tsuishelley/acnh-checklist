@@ -5,11 +5,11 @@
       <p>All the fishes available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div
-      class="row"
-      v-for="fish in fishes"
-      :key="fish.id"
-      :class="{ 'checked-row': fish.checked }"
-    >
+  class="row"
+  v-for="(fish, index) in fishes"
+  :key="fish.id + '-' + index"
+  :class="{ 'checked-row': fish.checked }"
+>
       <img class="col" :src="fish.image_url" alt="Fish Image">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{ fish.location }}</h2>
@@ -95,6 +95,11 @@ main {
   background-color: #C7ECE0; /* Color when checkbox is checked */
 }
 
+.checked-row img {
+    animation: wiggle 1s; /* Apply the animation */
+
+}
+
 .checkbox-container {
   display: flex;
   justify-content: flex-end;
@@ -128,28 +133,36 @@ export default {
     const fishes = ref([]);
     const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
 
-    async function fetchData() {
-      try {
+async function fetchData() {
+    try {
         const response = await fetch('https://api.nookipedia.com/nh/fish', {
-          headers: {
-            'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
-          }
+            headers: {
+                'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
+            }
         });
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         console.log(data);  // Log the data to inspect its structure
-        fishes.value = data.map(fish => ({
-          ...fish,
-          northAvailability: fish.north.availability_array,
-          southAvailability: fish.south.availability_array,
-          checked: false // Initialize checked property for each fish
-        }));
-      } catch (error) {
+        
+        const ids = new Set(); // Create a set to store unique ids
+        
+fishes.value = data.map((fish, index) => {
+    const id = ids.has(fish.id) ? fish.id + '-' + index : fish.id;
+    ids.add(id); // Add id to set
+    return {
+        ...fish,
+        id, // Use the modified id
+        northAvailability: fish.north.availability_array,
+        southAvailability: fish.south.availability_array,
+        checked: false // Initialize checked property for each fish
+    };
+});
+    } catch (error) {
         console.error('Error fetching fish data:', error);
-      }
     }
+}
 
     function getHemisphere() {
       const now = new Date();
