@@ -4,7 +4,7 @@
     <div class="user">
     <div class="demographic">
       <div class="chip time">
-      Time
+      Your Time
       </div>
         <div class="current-time">
       {{ currentTime }}
@@ -12,7 +12,7 @@
     </div>
     <div class="demographic">
           <div class="chip season">
-      Season
+      Your Season
       </div>
         <div class="current-season">
       {{ currentSeason }}
@@ -66,8 +66,12 @@
 }
 
 .chip {
-  display: inline-block;
-  padding: 5px 15px;
+  display: flex;
+  justify-content:center;
+  padding: 5px 10px; /* Adjust padding as needed */
+  margin-left:-20px;
+  margin-bottom:-10px;
+  max-width:100px;
   color: #725c4e;
   border-radius: 20px;
   font-family: Roboto;
