@@ -88,7 +88,7 @@
 }
 
 .hemisphere {
-  background-color: #f7cd67;
+  background-color: #D1DA49;
 }
 
 .current-time,
@@ -115,7 +115,7 @@
 .pill:hover {
   background-color: #8a7b66;
   color: white;
-      animation: wiggle 1s infinite; /* Apply the animation */
+      animation: wiggle 1s; /* Apply the animation */
 
 }
 
