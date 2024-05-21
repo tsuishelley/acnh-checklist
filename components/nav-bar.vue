@@ -30,7 +30,7 @@
     </div>
     <div class="sidebar">
       <NuxtLink to="/" class="pill">
-        Fishes
+        Fish
       </NuxtLink>
             <NuxtLink to="/bug" class="pill">
         Bugs
@@ -116,6 +116,13 @@
   background-color: #8a7b66;
   color: white;
       animation: wiggle 1s infinite; /* Apply the animation */
+
+}
+
+@media (max-width: 768px) {
+  .current-time, .current-season, .current-hemisphere, .chip {
+    display:none;
+  }
 
 }
 

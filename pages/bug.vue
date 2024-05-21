@@ -127,6 +127,20 @@ import { ref, onMounted } from 'vue';
 
 export default {
   name: 'BugPage',
+
+  head() {
+    return {
+      title: 'Bug Page - Animal Crossing: New Horizons',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'A quick checklist for all the bugs you can catch in Animal Crossing New Horizons.'
+        }
+      ]
+    };
+  },
+
   setup() {
     const bugs = ref([]);
     const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
@@ -175,7 +189,7 @@ export default {
       bug.checked = !bug.checked; // Toggle the checked property
     }
 
-        function capitalizeFirstLetter(str) {
+    function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 

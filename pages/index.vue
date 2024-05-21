@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>Animal Crossing Fishes Checklist</h1>
-      <p>All the fishes available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
+      <h1>Animal Crossing Fish Checklist</h1>
+      <p>All the fish available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
     </main>
     <div
   class="row"
@@ -79,6 +79,7 @@ h2 {
   margin: 0 2px 5px 0; /* Add padding to match the heading row */
 }
 
+
 html {
   background-image: url('/assets/background-image.jpg');
   background-size: 100%;
@@ -88,6 +89,16 @@ html {
 
 main {
   margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  html {
+    margin: 20px 8% 5% 8% !important;
+  }
 }
 
 
@@ -129,6 +140,20 @@ import { ref, onMounted } from 'vue';
 
 export default {
   name: 'HomePage',
+
+  head() {
+    return {
+      title: 'Fish Page - Animal Crossing: New Horizons',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'A quick checklist for all the fish you can catch in Animal Crossing New Horizons.'
+        }
+      ]
+    };
+  },
+
   setup() {
     const fishes = ref([]);
     const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
