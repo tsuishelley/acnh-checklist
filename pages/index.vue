@@ -81,10 +81,13 @@ h2 {
 
 
 html {
+  background-color:#F5EEE1;
   background-image: url('/assets/background-image.jpg');
   background-size: 100%;
   margin: 40px 15% 10% 15%;
   background-attachment: fixed;
+  background-repeat:no-repeat;
+  background-position: center bottom;
 }
 
 main {
@@ -98,6 +101,10 @@ main {
 
   html {
     margin: 20px 8% 5% 8% !important;
+  }
+
+    .col:nth-child(4) {
+    display: none;
   }
 }
 

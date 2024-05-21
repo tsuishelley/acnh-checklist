@@ -63,6 +63,17 @@ img.me {
   border-radius: 30px;
 }
 
+@media (max-width: 768px) {
+  .about-row {
+    flex-direction:column;
+  }
 
+  .col-7 {
+    width:100%;
+    margin:0px;
+  }
+
+
+}
 
 </style>
