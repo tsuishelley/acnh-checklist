@@ -4,8 +4,8 @@
       <div class="col-7">
         <h1>About</h1>
         <p>This site was created as a final project for the <a href="https://www.pce.uw.edu/certificates/front-end-development-with-html-css-and-javascript">UW Certificate in Front-End Development</a> by Shelley Tsui. Thank you so much to my instructor Aaron for all the kind help and most importantly my husband Christian for supplying me with endless mugs of tea and snacks throughout all three courses.</p>
-      <br>
-      <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties. My passport title is Untossable Trash. If you're interested in seeing more of my work, click <a href="https://tsuishelley.github.io/portfolio">here</a>. </p>
+      <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties.</p>
+      <p>My plan is to continuously refine and improve this site with added functionality and implementing responsiveness on tablet and mobile. If you're interested in seeing more of my work, click <a href="https://tsuishelley.github.io/portfolio">here</a>. </p>
       </div>
       <div class="col" style="position: relative;">
         <img src="/assets/acnh-shelley.svg" class="me" alt="" style="position: relative; right: 10%;">
@@ -62,4 +62,7 @@ img.me {
   max-width: 100%;
   border-radius: 30px;
 }
+
+
+
 </style>
