@@ -128,6 +128,12 @@
     margin-bottom:20px;
       --bs-gutter-x:0px !important;
       min-width:100%;
+      justify-content:start;
+  }
+
+  .pill {
+    margin-left:0px !important;
+    margin-right:20px;
   }
 
 }
@@ -152,6 +158,12 @@
   .app {
     margin-top:5%;
   }
+
+    .pill {
+    margin-left:0px !important;
+    margin-right:10px;
+  }
+
 
 }
 

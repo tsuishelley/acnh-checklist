@@ -77,7 +77,7 @@ img.me {
 
   img.me {
     max-width:75%;
-    margin-bottom:40px;
+    margin:10px 0 30px 0;
   }
 
   h1 {
@@ -94,6 +94,19 @@ img.me {
   img.me {
     max-width:75%;
   }
+}
+
+
+@media (max-width:576px) {
+
+
+  hr {
+    margin:30px 0 30px 0 !important;
+  }
+
+h3 {
+    margin:0px !important
+}
 }
 
 
