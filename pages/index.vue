@@ -128,6 +128,10 @@ main {
   .main {
     margin-bottom:30px !important;
   }
+
+    html {
+    margin: 5% 5% 10% 5% !important;
+  }
 }
 
 

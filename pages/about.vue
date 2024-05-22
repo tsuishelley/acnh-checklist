@@ -67,12 +67,17 @@ img.me {
 
 @media (max-width: 1200px) {
   .about-row {
-    flex-direction:column;
+    flex-direction:column-reverse;
   }
 
   .col-7 {
     width:100%;
     margin:0px;
+  }
+
+  img.me {
+    max-width:75%;
+    margin-bottom:40px;
   }
 
   h1 {
@@ -83,11 +88,11 @@ img.me {
 
 @media (max-width: 768px) {
   .about-row {
-    flex-direction:column;
+    flex-direction:column-reverse;
   }
 
-  .col me {
-    margin:0px;
+  img.me {
+    max-width:75%;
   }
 }
 

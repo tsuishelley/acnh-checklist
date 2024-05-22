@@ -124,9 +124,10 @@
     display:none;
   }
   .container {
-    margin-bottom:30px;
+    margin-bottom:20px;
       --bs-gutter-x:0px;
   }
+
 
 }
 
