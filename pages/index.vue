@@ -139,6 +139,10 @@ main {
     html {
     margin: 5% 3% 10% 3% !important;
   }
+
+      .col:nth-child(3), .col:nth-child(5) {
+    display: none;
+  }
   
 }
 
