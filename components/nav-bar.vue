@@ -161,7 +161,7 @@
 
     .pill {
     margin-left:0px !important;
-    margin-right:10px;
+    margin-right:15px;
   }
 
 
