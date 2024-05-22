@@ -50,6 +50,7 @@
   align-items: flex-end;
   margin-bottom:50px;
   justify-content:space-between;
+        --bs-gutter-x:0px;
 }
 
 .user {
@@ -125,9 +126,9 @@
   }
   .container {
     margin-bottom:20px;
-      --bs-gutter-x:0px;
+      --bs-gutter-x:0px !important;
+      min-width:100%;
   }
-
 
 }
 
@@ -135,6 +136,23 @@
   a {
     font-size:16px !important;
   }
+  
+  .container{
+            --bs-gutter-x:0px !important;
+            min-width:100%;
+
+  }
+
+
+}
+
+@media (max-width:576px) {
+
+
+  .app {
+    margin-top:5%;
+  }
+
 }
 
 .header {

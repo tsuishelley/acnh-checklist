@@ -134,6 +134,14 @@ main {
   }
 }
 
+@media (max-width:576px) {
+
+    html {
+    margin: 5% 3% 10% 3% !important;
+  }
+  
+}
+
 
 .checked-row {
   background-color: #C7ECE0; /* Color when checkbox is checked */
