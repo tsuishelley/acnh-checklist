@@ -75,7 +75,6 @@ h2 {
   background-color: #F8F4E8;
   border-radius: 10px;
   width: 100%;
-  padding-right: 20px;
   margin: 0 2px 5px 0; /* Add padding to match the heading row */
 }
 
@@ -132,6 +131,7 @@ main {
     html {
     margin: 5% 5% 10% 5% !important;
   }
+
 }
 
 @media (max-width:576px) {
@@ -143,7 +143,7 @@ main {
       .col:nth-child(3), .col:nth-child(5) {
     display: none;
   }
-  
+
 }
 
 
