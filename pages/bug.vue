@@ -76,7 +76,6 @@ h2 {
   background-color: #F8F4E8;
   border-radius: 10px;
   width: 100%;
-  padding-right: 20px;
   margin: 0 2px 5px 0;
   transition: background-color 0.3s ease;
 }
