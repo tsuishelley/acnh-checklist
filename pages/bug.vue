@@ -2,23 +2,24 @@
   <div class="app">
     <main class="main">
       <h1>Animal Crossing Bugs Checklist</h1>
-      <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
+      <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. Feel free to use this list to track your progress!</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+      </div>
     </main>
     <div
       class="row"
       v-for="bug in bugs"
-  :key="bug.id + '-' + index"
+      :key="bug.id"
       :class="{ 'checked-row': bug.checked }"
     >
       <img class="col" :src="bug.image_url" alt="Bug Image">
-<h2 class="col">{{bug.name }}</h2>
+      <h2 class="col">{{ bug.name }}</h2>
       <h2 class="col">{{ bug.location }}</h2>
-<h2 class="col">
-
-  <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
-  &nbsp;
-    {{ bug.sell_nook }}
-</h2>
+      <h2 class="col">
+        <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
+        &nbsp; {{ bug.sell_nook }}
+      </h2>
       <h2 class="col">{{ hemisphere === 'northern' ? bug.north.months : bug.south.months }}</h2>
       <div class="col checkbox-container">
         <input
@@ -80,6 +81,24 @@ h2 {
   transition: background-color 0.3s ease;
 }
 
+.progress-bar-container {
+  width: 100%;
+  background-color: #F8F4E8;
+  border-radius: 10px;
+  margin-top:40px;
+  margin-bottom:20px;
+  position: relative;
+  height: 10px;
+  display: flex;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #76c7c0;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
 .checked-row {
   background-color: #C7ECE0; /* Color when checkbox is checked */
 }
@@ -121,7 +140,7 @@ main {
 </style>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 export default {
   name: 'BugPage',
@@ -176,12 +195,19 @@ export default {
       }
     }
 
-
     function getHemisphere() {
       const now = new Date();
       const month = now.getMonth() + 1; // JavaScript months are zero-based
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
+
+    const checkedCount = computed(() => {
+      return bugs.value.filter(bug => bug.checked).length;
+    });
+
+    const progressPercentage = computed(() => {
+      return (checkedCount.value / bugs.value.length) * 100;
+    });
 
     async function toggleCheckbox(bug) {
       bug.checked = !bug.checked; // Toggle the checked property
@@ -196,7 +222,9 @@ export default {
     return {
       bugs,
       hemisphere,
-      toggleCheckbox
+      toggleCheckbox,
+      checkedCount,
+      progressPercentage
     };
   }
 };

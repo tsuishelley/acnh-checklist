@@ -2,7 +2,10 @@
   <div class="app">
     <main class="main">
       <h1>Animal Crossing Fish Checklist</h1>
-      <p>All the fish available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. It also includes a checkbox for you to mark what you have and haven't caught. Feel free to use as you see fit!</p>
+      <p>All the fish available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. Feel free to use this list to track your progress!</p>
+          <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+      </div>
     </main>
     <div
   class="row"
@@ -78,6 +81,24 @@ h2 {
   margin: 0 2px 5px 0; /* Add padding to match the heading row */
 }
 
+.progress-bar-container {
+  width: 100%;
+  background-color: #F8F4E8;
+  border-radius: 10px;
+  margin-top:40px;
+  margin-bottom:20px;
+  position: relative;
+  height: 10px;
+  display: flex;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #76c7c0;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
 
 html {
   background-color:#F5EEE1;
@@ -143,6 +164,7 @@ main {
       .col:nth-child(3), .col:nth-child(5) {
     display: none;
   }
+
 
 }
 
@@ -240,6 +262,14 @@ fishes.value = data.map((fish, index) => {
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
+        const checkedCount = computed(() => {
+      return fishes.value.filter(fish => fish.checked).length;
+    });
+
+    const progressPercentage = computed(() => {
+      return (checkedCount.value / fishes.value.length) * 100;
+    });
+
     async function toggleCheckbox(fish) {
       fish.checked = !fish.checked; // Toggle the checked property
     }
@@ -249,7 +279,9 @@ fishes.value = data.map((fish, index) => {
     return {
       fishes,
       hemisphere,
-      toggleCheckbox
+      toggleCheckbox,
+      checkedCount,
+      progressPercentage
     };
   }
 };
