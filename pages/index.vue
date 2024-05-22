@@ -94,17 +94,39 @@ main {
   margin-bottom: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   h1 {
     font-size: 32px;
   }
 
   html {
-    margin: 20px 8% 5% 8% !important;
+    margin: 20px 10% 5% 10% !important;
   }
 
     .col:nth-child(4) {
     display: none;
+  }
+    .main {
+    margin-bottom:30px !important;
+  }
+
+}
+
+@media (max-width: 768px){
+  .app {
+    padding:30px !important;
+  }
+
+  p {
+    font-size:16px !important;
+  }
+
+  h2 {
+    font-size:16px !important;
+  }
+
+  .main {
+    margin-bottom:30px !important;
   }
 }
 

@@ -112,7 +112,6 @@ main {
   height: 30px;
   cursor: pointer;
   background: url('/assets/unchecked.svg') no-repeat center center / contain;
-  
 }
 
 .form-check-input:checked + .custom-checkbox {

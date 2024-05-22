@@ -7,8 +7,8 @@
       <p>As for my own Animal Crossing preferences — I'm a big fan of Fauna, Sally, and Kapp'n's lovely sea shanties.</p>
       <p>My plan is to continuously refine and improve this site with added functionality and implementing responsiveness on tablet and mobile. If you're interested in seeing more of my work, click <a href="https://tsuishelley.github.io/portfolio">here</a>. </p>
       </div>
-      <div class="col" style="position: relative;">
-        <img src="/assets/acnh-shelley.svg" class="me" alt="" style="position: relative; right: 10%;">
+      <div class="col me" style="position: relative;">
+        <img src="/assets/acnh-shelley.svg" class="me" alt="" style="">
       </div>
     </div>
     <hr>
@@ -44,14 +44,16 @@ h3 {
   margin-top:50px;
 }
 
+.me{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+}
+
 .col-7{
   flex: 2;
   margin-right:80px;
-}
-
-.col{
-    display: flex;
-  align-items: center;
 }
 
 hr {
@@ -63,7 +65,7 @@ img.me {
   border-radius: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .about-row {
     flex-direction:column;
   }
@@ -73,7 +75,21 @@ img.me {
     margin:0px;
   }
 
+  h1 {
+    font-size:36px;
+  }
 
 }
+
+@media (max-width: 768px) {
+  .about-row {
+    flex-direction:column;
+  }
+
+  .col me {
+    margin:0px;
+  }
+}
+
 
 </style>

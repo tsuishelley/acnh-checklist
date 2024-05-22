@@ -119,11 +119,21 @@
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .current-time, .current-season, .current-hemisphere, .chip {
     display:none;
   }
+  .container {
+    margin-bottom:30px;
+      --bs-gutter-x:0px;
+  }
 
+}
+
+@media (max-width: 768px){
+  a {
+    font-size:16px !important;
+  }
 }
 
 .header {
