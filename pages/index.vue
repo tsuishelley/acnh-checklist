@@ -1,4 +1,3 @@
-
 <template>
   <div class="app">
     <main class="main">
@@ -32,6 +31,7 @@
           type="checkbox"
           :id="'checkbox-' + fish.id"
           v-model="fish.checked"
+          @change="saveProgress"
           aria-label="..."
         />
         <label :for="'checkbox-' + fish.id" class="custom-checkbox"></label>
@@ -294,6 +294,14 @@ export default {
           };
         });
 
+        // Load saved progress from local storage
+        const savedProgress = JSON.parse(localStorage.getItem('fishProgress')) || {};
+        fishList.forEach(fish => {
+          if (savedProgress[fish.id] !== undefined) {
+            fish.checked = savedProgress[fish.id];
+          }
+        });
+
         fishList = sortFishByMonth(fishList, hemisphere.value, currentMonth);
         fishes.value = fishList;
       } catch (error) {
@@ -321,8 +329,17 @@ export default {
       return timesByMonth[currentMonth];
     }
 
+    function saveProgress() {
+      const progress = {};
+      fishes.value.forEach(fish => {
+        progress[fish.id] = fish.checked;
+      });
+      localStorage.setItem('fishProgress', JSON.stringify(progress));
+    }
+
     async function toggleCheckbox(fish) {
       fish.checked = !fish.checked;
+      saveProgress();
     }
 
     onMounted(fetchData);
@@ -333,7 +350,8 @@ export default {
       toggleCheckbox,
       checkedCount,
       progressPercentage,
-      getFishTimes
+      getFishTimes,
+      saveProgress
     };
   }
 };
