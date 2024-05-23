@@ -3,8 +3,11 @@
     <main class="main">
       <h1>Animal Crossing Bugs Checklist</h1>
       <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. Feel free to use this list to track your progress!</p>
-      <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+      <div class="progress-container">
+        <div class="progress-bar-container">
+          <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+        </div>
+        <span class="progress-counter">{{ checkedCount }} / {{ bugs.length }}</span>
       </div>
     </main>
     <div
@@ -81,15 +84,21 @@ h2 {
   transition: background-color 0.3s ease;
 }
 
+.progress-container {
+  margin-top:40px;
+  display: flex;
+  align-items: center;
+}
+
 .progress-bar-container {
-  width: 100%;
+  flex-grow: 1;
   background-color: #F8F4E8;
   border-radius: 10px;
-  margin-top:40px;
-  margin-bottom:20px;
-  position: relative;
   height: 10px;
-  display: flex;
+  position: relative;
+  margin-right: 30px;
+    align-items: center;
+
 }
 
 .progress-bar {
@@ -97,6 +106,13 @@ h2 {
   background-color: #76c7c0;
   border-radius: 10px;
   transition: width 0.3s ease;
+}
+
+.progress-counter {
+  color: #725C4E;
+  font-weight: 500;
+  opacity:75%;
+  white-space: nowrap; /* Prevents the text from wrapping */
 }
 
 .checked-row {
@@ -134,9 +150,7 @@ main {
 
 .form-check-input:checked + .custom-checkbox {
   background: url('/assets/checked.svg') no-repeat center center / contain;
-  
 }
-
 </style>
 
 <script>
