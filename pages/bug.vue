@@ -24,6 +24,7 @@
         &nbsp; {{ bug.sell_nook }}
       </h2>
       <h2 class="col">{{ hemisphere === 'northern' ? bug.north.months : bug.south.months }}</h2>
+      <h2 class="col">{{ getBugTimes(bug) }}</h2> <!-- New Column for Times -->
       <div class="col checkbox-container">
         <input
           class="form-check-input"
@@ -174,12 +175,35 @@ export default {
 
   setup() {
     const bugs = ref([]);
-    const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
+    const hemisphere = ref(getHemisphere());
+
+    function getCurrentMonth() {
+      const now = new Date();
+      return now.getMonth() + 1;
+    }
+
+    function sortBugsByMonth(bugList, hemisphere, currentMonth) {
+      return bugList.sort((a, b) => {
+        const aMonths = hemisphere === 'northern' ? a.north.months_array : a.south.months_array;
+        const bMonths = hemisphere === 'northern' ? b.north.months_array : b.south.months_array;
+
+        const aAvailable = aMonths.includes(currentMonth);
+        const bAvailable = bMonths.includes(currentMonth);
+
+        if (aAvailable && !bAvailable) {
+          return -1;
+        }
+        if (!aAvailable && bAvailable) {
+          return 1;
+        }
+        return 0;
+      });
+    }
 
     async function fetchData() {
       try {
         const response = await fetch('https://api.nookipedia.com/nh/bugs', {
-          headers: {
+        headers: {
             'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
           }
         });
@@ -187,23 +211,24 @@ export default {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);  // Log the data to inspect its structure
-        
-        const ids = new Set(); // Create a set to store unique ids
-        
-        bugs.value = data.map((bug, index) => {
+        const ids = new Set();
+        const currentMonth = getCurrentMonth();
+
+        let bugList = data.map((bug, index) => {
           const id = ids.has(bug.id) ? bug.id + '-' + index : bug.id;
-          ids.add(id); // Add id to set
+          ids.add(id);
           return {
             ...bug,
-            id, // Use the modified id
-            name: capitalizeFirstLetter(bug.name), // Capitalize the first letter of bug name
-
+            id,
+            name: capitalizeFirstLetter(bug.name),
             northAvailability: bug.north.availability_array,
             southAvailability: bug.south.availability_array,
-            checked: false // Initialize checked property for each bug
+            checked: false
           };
         });
+
+        bugList = sortBugsByMonth(bugList, hemisphere.value, currentMonth);
+        bugs.value = bugList;
       } catch (error) {
         console.error('Error fetching bug data:', error);
       }
@@ -211,7 +236,7 @@ export default {
 
     function getHemisphere() {
       const now = new Date();
-      const month = now.getMonth() + 1; // JavaScript months are zero-based
+      const month = now.getMonth() + 1;
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
@@ -223,8 +248,14 @@ export default {
       return (checkedCount.value / bugs.value.length) * 100;
     });
 
+    function getBugTimes(bug) {
+      const currentMonth = getCurrentMonth();
+      const timesByMonth = hemisphere.value === 'northern' ? bug.north.times_by_month : bug.south.times_by_month;
+      return timesByMonth[currentMonth];
+    }
+
     async function toggleCheckbox(bug) {
-      bug.checked = !bug.checked; // Toggle the checked property
+      bug.checked = !bug.checked;
     }
 
     function capitalizeFirstLetter(str) {
@@ -238,7 +269,8 @@ export default {
       hemisphere,
       toggleCheckbox,
       checkedCount,
-      progressPercentage
+      progressPercentage,
+      getBugTimes
     };
   }
 };

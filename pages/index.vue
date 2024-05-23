@@ -1,3 +1,4 @@
+
 <template>
   <div class="app">
     <main class="main">
@@ -11,20 +12,20 @@
       </div>
     </main>
     <div
-  class="row"
-  v-for="(fish, index) in fishes"
-  :key="fish.id + '-' + index"
-  :class="{ 'checked-row': fish.checked }"
->
+      class="row"
+      v-for="(fish, index) in fishes"
+      :key="fish.id + '-' + index"
+      :class="{ 'checked-row': fish.checked }"
+    >
       <img class="col" :src="fish.image_url" alt="Fish Image">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{ fish.location }}</h2>
-<h2 class="col">
-  <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
-  &nbsp;
-    {{ fish.sell_nook }}
-</h2>
+      <h2 class="col">
+        <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
+        &nbsp;{{ fish.sell_nook }}
+      </h2>
       <h2 class="col">{{ hemisphere === 'northern' ? fish.north.months : fish.south.months }}</h2>
+      <h2 class="col">{{ getFishTimes(fish) }}</h2> <!-- New Column for Times -->
       <div class="col checkbox-container">
         <input
           class="form-check-input"
@@ -38,6 +39,7 @@
     </div>
   </div>
 </template>
+
 
 
 <style>
@@ -223,11 +225,10 @@ main {
 </style>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 
 export default {
   name: 'HomePage',
-
   head() {
     return {
       title: 'Fish Page - Animal Crossing: New Horizons',
@@ -240,49 +241,73 @@ export default {
       ]
     };
   },
-
   setup() {
     const fishes = ref([]);
-    const hemisphere = ref(getHemisphere()); // Set hemisphere based on user's timezone
+    const hemisphere = ref(getHemisphere());
 
-async function fetchData() {
-    try {
+    function getCurrentMonth() {
+      const now = new Date();
+      return now.getMonth() + 1; // JavaScript months are zero-based, so add 1
+    }
+
+    function sortFishByMonth(fishList, hemisphere, currentMonth) {
+      return fishList.sort((a, b) => {
+        const aMonths = hemisphere === 'northern' ? a.north.months_array : a.south.months_array;
+        const bMonths = hemisphere === 'northern' ? b.north.months_array : b.south.months_array;
+
+        const aAvailable = aMonths.includes(currentMonth);
+        const bAvailable = bMonths.includes(currentMonth);
+
+        if (aAvailable && !bAvailable) {
+          return -1;
+        }
+        if (!aAvailable && bAvailable) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    async function fetchData() {
+      try {
         const response = await fetch('https://api.nookipedia.com/nh/fish', {
-            headers: {
-                'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
-            }
+          headers: {
+            'x-api-key': 'ab94348a-c764-4856-b1c1-103cfe6ae2ff'
+          }
         });
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);  // Log the data to inspect its structure
+        const ids = new Set();
+        const currentMonth = getCurrentMonth();
         
-        const ids = new Set(); // Create a set to store unique ids
-        
-fishes.value = data.map((fish, index) => {
-    const id = ids.has(fish.id) ? fish.id + '-' + index : fish.id;
-    ids.add(id); // Add id to set
-    return {
-        ...fish,
-        id, // Use the modified id
-        northAvailability: fish.north.availability_array,
-        southAvailability: fish.south.availability_array,
-        checked: false // Initialize checked property for each fish
-    };
-});
-    } catch (error) {
+        let fishList = data.map((fish, index) => {
+          const id = ids.has(fish.id) ? fish.id + '-' + index : fish.id;
+          ids.add(id);
+          return {
+            ...fish,
+            id,
+            northAvailability: fish.north.availability_array,
+            southAvailability: fish.south.availability_array,
+            checked: false
+          };
+        });
+
+        fishList = sortFishByMonth(fishList, hemisphere.value, currentMonth);
+        fishes.value = fishList;
+      } catch (error) {
         console.error('Error fetching fish data:', error);
+      }
     }
-}
 
     function getHemisphere() {
       const now = new Date();
-      const month = now.getMonth() + 1; // JavaScript months are zero-based
+      const month = now.getMonth() + 1;
       return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
-        const checkedCount = computed(() => {
+    const checkedCount = computed(() => {
       return fishes.value.filter(fish => fish.checked).length;
     });
 
@@ -290,8 +315,14 @@ fishes.value = data.map((fish, index) => {
       return (checkedCount.value / fishes.value.length) * 100;
     });
 
+    function getFishTimes(fish) {
+      const currentMonth = getCurrentMonth();
+      const timesByMonth = hemisphere.value === 'northern' ? fish.north.times_by_month : fish.south.times_by_month;
+      return timesByMonth[currentMonth];
+    }
+
     async function toggleCheckbox(fish) {
-      fish.checked = !fish.checked; // Toggle the checked property
+      fish.checked = !fish.checked;
     }
 
     onMounted(fetchData);
@@ -301,7 +332,8 @@ fishes.value = data.map((fish, index) => {
       hemisphere,
       toggleCheckbox,
       checkedCount,
-      progressPercentage
+      progressPercentage,
+      getFishTimes
     };
   }
 };
