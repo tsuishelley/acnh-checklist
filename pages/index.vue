@@ -19,6 +19,7 @@
       <img class="col" :src="fish.image_url" alt="Fish Image">
       <h2 class="col">{{ fish.name }}</h2>
       <h2 class="col">{{ fish.location }}</h2>
+      <h2 class="col"> {{fish.shadow_size }}</h2>
       <h2 class="col">
         <img src="/assets/bells.svg" alt="Bells Icon" class="bell-icon" style="width:20px">
         &nbsp;{{ fish.sell_nook }}
