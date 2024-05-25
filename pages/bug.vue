@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <main class="main">
-      <h1>Animal Crossing Bug Checklist</h1>
-      <p>All the bugs available to catch in Animal Crossing New Horizons along with their location, sell value, and availability. Feel free to use this list to track your progress!</p>
+      <h1>Animal Crossing Bugs List</h1>
+      <p>All the bugs available to catch in Animal Crossing New Horizons along with the necessary stats. Feel free to use this list to track your progress!</p>
       <div class="progress-container">
         <div class="progress-bar-container">
           <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>

@@ -35,8 +35,8 @@
             <NuxtLink to="/bug" class="pill">
         Bugs
       </NuxtLink>
-            <NuxtLink to="/about" class="pill">
-        About
+              <NuxtLink to="/sea" class="pill">
+        Sea Creatures
       </NuxtLink>
     </div>
   </div>
@@ -111,6 +111,8 @@
   background-color: #725c4e;
   margin-left: 20px;
   color: white;
+    font-family: "Roboto", sans-serif;
+    font-size:18px;
 }
 
 .pill:hover {
