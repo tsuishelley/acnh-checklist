@@ -81,7 +81,7 @@
 }
 
 .time {
-  background-color: #ecdf52;
+  background-color: #F7CD67;
 }
 
 .season {
