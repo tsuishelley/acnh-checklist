@@ -229,18 +229,6 @@ import { ref, onMounted, computed } from 'vue';
 
 export default {
   name: 'HomePage',
-  head() {
-    return {
-      title: 'Bug Page - Animal Crossing: New Horizons',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'A quick checklist for all the bugs you can catch in Animal Crossing New Horizons.'
-        }
-      ]
-    };
-  },
   setup() {
     const bugs = ref([]);
     const hemisphere = ref(getHemisphere());
@@ -347,7 +335,10 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    onMounted(fetchData);
+    onMounted(() => {
+      fetchData();
+      document.title = 'Animal Crossing – Bugs';
+    });
 
     return {
       bugs,
@@ -360,4 +351,5 @@ export default {
     };
   }
 };
+
 </script>

@@ -230,18 +230,6 @@ import { ref, onMounted, computed } from 'vue';
 
 export default {
   name: 'SeaPage',
-  head() {
-    return {
-      title: 'Sea Creatures Page - Animal Crossing: New Horizons',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'A quick checklist for all the sea creatures you can catch in Animal Crossing New Horizons.'
-        }
-      ]
-    };
-  },
   setup() {
     const seas = ref([]);
     const hemisphere = ref(getHemisphere());
@@ -289,8 +277,7 @@ export default {
           return {
             ...sea,
             id,
-                        name: capitalizeFirstLetter(sea.name), // Capitalize the first letter of sea creature name
-
+            name: capitalizeFirstLetter(sea.name), // Capitalize the first letter of sea creature name
             northAvailability: sea.north.availability_array,
             southAvailability: sea.south.availability_array,
             checked: false
@@ -345,11 +332,14 @@ export default {
       saveProgress();
     }
 
-        function capitalizeFirstLetter(str) {
+    function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    onMounted(fetchData);
+    onMounted(() => {
+      fetchData();
+      document.title = 'Animal Crossing – Sea Creatures';
+    });
 
     return {
       seas,
@@ -362,4 +352,5 @@ export default {
     };
   }
 };
+
 </script>
