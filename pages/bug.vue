@@ -231,7 +231,7 @@ export default {
   name: 'HomePage',
   setup() {
     const bugs = ref([]);
-    const hemisphere = ref(getHemisphere());
+    const hemisphere = ref('northern');
 
     function getCurrentMonth() {
       const now = new Date();
@@ -296,12 +296,6 @@ export default {
       } catch (error) {
         console.error('Error fetching bug data:', error);
       }
-    }
-
-    function getHemisphere() {
-      const now = new Date();
-      const month = now.getMonth() + 1;
-      return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
     const checkedCount = computed(() => {

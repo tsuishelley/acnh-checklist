@@ -69,7 +69,7 @@
 .chip {
   display: flex;
   justify-content:center;
-  padding: 5px 10px; /* Adjust padding as needed */
+  padding: 5px 10px;
   margin-left:-20px;
   margin-bottom:-10px;
   max-width:100px;
@@ -118,7 +118,7 @@
 .pill:hover {
   background-color: #8a7b66;
   color: white;
-      animation: wiggle 1s; /* Apply the animation */
+      animation: wiggle 1s;
 
 }
 
@@ -209,7 +209,7 @@ export default {
     return {
       currentTime: '',
       currentSeason: '',
-      currentHemisphere: ''
+      currentHemisphere: 'Northern'
     };
   },
   mounted() {
@@ -219,15 +219,14 @@ export default {
     updateTimeAndSeason() {
       const now = new Date();
       let hour = now.getHours();
-  const minute = now.getMinutes();
-  const period = hour >= 12 ? 'PM' : 'AM';
-  
-  // Convert to 12-hour format
-  hour = hour % 12 || 12;
+      const minute = now.getMinutes();
+      const period = hour >= 12 ? 'PM' : 'AM';
+      
+      // Convert to 12-hour format
+      hour = hour % 12 || 12;
 
-  this.currentTime = `${hour}:${minute < 10 ? '0' + minute : minute} ${period}`;
+      this.currentTime = `${hour}:${minute < 10 ? '0' + minute : minute} ${period}`;
       this.currentSeason = this.getSeason(now.getMonth());
-      this.currentHemisphere = this.getHemisphere(now.getMonth());
     },
     getSeason(month) {
       switch (month) {
@@ -246,9 +245,6 @@ export default {
         default: // September, October, November
           return 'Fall';
       }
-    },
-    getHemisphere(month) {
-      return month >= 2 && month <= 7 ? 'Northern' : 'Southern';
     }
   }
 };

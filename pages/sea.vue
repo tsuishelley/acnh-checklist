@@ -232,7 +232,7 @@ export default {
   name: 'SeaPage',
   setup() {
     const seas = ref([]);
-    const hemisphere = ref(getHemisphere());
+    const hemisphere = ref('northern');
 
     function getCurrentMonth() {
       const now = new Date();
@@ -297,12 +297,6 @@ export default {
       } catch (error) {
         console.error('Error fetching sea data:', error);
       }
-    }
-
-    function getHemisphere() {
-      const now = new Date();
-      const month = now.getMonth() + 1;
-      return month >= 6 && month <= 11 ? 'southern' : 'northern';
     }
 
     const checkedCount = computed(() => {
