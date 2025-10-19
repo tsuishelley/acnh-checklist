@@ -214,6 +214,17 @@ export default {
   },
   mounted() {
     this.updateTimeAndSeason();
+    
+    // Update time every minute
+    this.timeInterval = setInterval(() => {
+      this.updateTimeAndSeason();
+    }, 60000); // Update every 60 seconds
+  },
+  beforeUnmount() {
+    // Clean up interval when component is destroyed
+    if (this.timeInterval) {
+      clearInterval(this.timeInterval);
+    }
   },
   methods: {
     updateTimeAndSeason() {

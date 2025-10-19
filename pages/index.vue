@@ -310,7 +310,36 @@ export default {
     function getFishTimes(fish) {
       const currentMonth = getCurrentMonth();
       const timesByMonth = hemisphere.value === 'northern' ? fish.north.times_by_month : fish.south.times_by_month;
-      return timesByMonth[currentMonth];
+      const timeString = timesByMonth[currentMonth];
+      
+      // Check if fish is available at current time
+      if (!isAvailableNow(fish)) {
+        return 'N/A';
+      }
+      
+      return timeString;
+    }
+
+    function isAvailableNow(fish) {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMonth = getCurrentMonth();
+      
+      // Check if available in current month
+      const monthsArray = hemisphere.value === 'northern' ? fish.north.months_array : fish.south.months_array;
+      if (!monthsArray.includes(currentMonth)) {
+        return false;
+      }
+      
+      // Get availability array for current time checking
+      const availabilityArray = hemisphere.value === 'northern' ? fish.north.availability_array : fish.south.availability_array;
+      
+      // Check if current month and hour combo exists in availability array
+      const isAvailable = availabilityArray.some(av => {
+        return av.months.includes(currentMonth) && av.time.includes(currentHour);
+      });
+      
+      return isAvailable;
     }
 
     function saveProgress() {
