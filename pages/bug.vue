@@ -309,36 +309,7 @@ export default {
     function getBugTimes(bug) {
       const currentMonth = getCurrentMonth();
       const timesByMonth = hemisphere.value === 'northern' ? bug.north.times_by_month : bug.south.times_by_month;
-      const timeString = timesByMonth[currentMonth];
-      
-      // Check if bug is available at current time
-      if (!isAvailableNow(bug)) {
-        return 'N/A';
-      }
-      
-      return timeString;
-    }
-
-    function isAvailableNow(bug) {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMonth = getCurrentMonth();
-      
-      // Check if available in current month
-      const monthsArray = hemisphere.value === 'northern' ? bug.north.months_array : bug.south.months_array;
-      if (!monthsArray.includes(currentMonth)) {
-        return false;
-      }
-      
-      // Get availability array for current time checking
-      const availabilityArray = hemisphere.value === 'northern' ? bug.north.availability_array : bug.south.availability_array;
-      
-      // Check if current month and hour combo exists in availability array
-      const isAvailable = availabilityArray.some(av => {
-        return av.months.includes(currentMonth) && av.time.includes(currentHour);
-      });
-      
-      return isAvailable;
+      return timesByMonth[currentMonth];
     }
 
     function saveProgress() {

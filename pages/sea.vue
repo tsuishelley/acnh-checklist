@@ -310,36 +310,7 @@ export default {
     function getSeaTimes(sea) {
       const currentMonth = getCurrentMonth();
       const timesByMonth = hemisphere.value === 'northern' ? sea.north.times_by_month : sea.south.times_by_month;
-      const timeString = timesByMonth[currentMonth];
-      
-      // Check if sea creature is available at current time
-      if (!isAvailableNow(sea)) {
-        return 'N/A';
-      }
-      
-      return timeString;
-    }
-
-    function isAvailableNow(sea) {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMonth = getCurrentMonth();
-      
-      // Check if available in current month
-      const monthsArray = hemisphere.value === 'northern' ? sea.north.months_array : sea.south.months_array;
-      if (!monthsArray.includes(currentMonth)) {
-        return false;
-      }
-      
-      // Get availability array for current time checking
-      const availabilityArray = hemisphere.value === 'northern' ? sea.north.availability_array : sea.south.availability_array;
-      
-      // Check if current month and hour combo exists in availability array
-      const isAvailable = availabilityArray.some(av => {
-        return av.months.includes(currentMonth) && av.time.includes(currentHour);
-      });
-      
-      return isAvailable;
+      return timesByMonth[currentMonth];
     }
 
     function saveProgress() {
